@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>롤 내전 · 관리자</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main class="container">
+    <!-- 로그인 폼 -->
+    <section class="card login-box" id="login-view" hidden>
+      <div class="card-title">관리자 로그인</div>
+      <form id="login-form">
+        <div class="form-row">
+          <label for="password">비밀번호</label>
+          <input class="input" id="password" type="password" autocomplete="current-password" required />
+        </div>
+        <button class="btn btn-gold" type="submit" id="login-btn" style="width:100%">로그인</button>
+      </form>
+    </section>
+
+    <!-- 로그인 후 관리자 메뉴 -->
+    <section id="admin-view" hidden>
+      <div class="page-head">
+        <div>
+          <h1 class="page-title">관리자 메뉴</h1>
+          <p class="page-sub">플레이어 등록, 팀 구성, 경기 결과 입력을 할 수 있습니다.</p>
+        </div>
+        <button class="btn" id="logout-btn">로그아웃</button>
+      </div>
+      <div class="admin-menu">
+        <a href="players.html"><strong>플레이어 관리</strong><span>등록 · 수정 · 삭제(비활성화)</span></a>
+        <a href="team-builder.html"><strong>팀 구성</strong><span>10명 선택 → 자동 밸런싱 → 확정</span></a>
+        <a href="matches.html"><strong>경기 결과 입력</strong><span>진행중 경기 승리팀 입력 · 경기 삭제</span></a>
+        <a href="#" id="backup-link"><strong>DB 백업</strong><span>SQLite 파일 다운로드</span></a>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

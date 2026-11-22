@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>롤 내전 · 랭킹</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main class="container">
+    <div class="page-head">
+      <div>
+        <h1 class="page-title">내전 랭킹</h1>
+        <p class="page-sub">최소 3경기 이상 참가한 플레이어만 표시됩니다.</p>
+      </div>
+      <div class="tabs" id="sort-tabs">
+        <button data-sort="score" class="active">점수순</button>
+        <button data-sort="winrate">승률순</button>
+        <button data-sort="games">경기 수순</button>
+      </div>
+    </div>
+
+    <div class="grid-main-side">
+      <section class="card">
+        <div class="table-wrap" id="ranking"></div>
+      </section>
+
+      <aside class="card">
+        <div class="card-title">최근 경기 <a href="matches.html" class="btn btn-sm btn-ghost">전체 보기</a></div>
+        <div id="recent-matches"></div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/ranking.js"></script>
+</body>
+</html>

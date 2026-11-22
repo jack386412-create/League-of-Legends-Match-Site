@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>롤 내전 · 플레이어</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main class="container">
+    <div class="page-head">
+      <div>
+        <h1 class="page-title">플레이어</h1>
+        <p class="page-sub" id="player-count">&nbsp;</p>
+      </div>
+      <button class="btn btn-gold admin-only" id="btn-add">+ 플레이어 등록</button>
+    </div>
+
+    <section class="card">
+      <div class="toolbar">
+        <input class="input" id="search" type="search" placeholder="소환사명 또는 태그 검색" />
+        <select class="select" id="filter-tier"><option value="">전체 티어</option></select>
+        <select class="select" id="filter-pos"><option value="">전체 포지션</option></select>
+        <label class="check"><input type="checkbox" id="show-inactive" /> 비활성 포함</label>
+      </div>
+      <div class="table-wrap" id="player-table"></div>
+    </section>
+  </main>
+
+  <!-- 등록 / 수정 모달 -->
+  <div class="modal-backdrop" id="player-modal">
+    <form class="card modal" id="player-form" novalidate>
+      <div class="card-title" id="modal-title">플레이어 등록</div>
+      <div class="form-grid">
+        <div class="form-row">
+          <label for="f-name">소환사명</label>
+          <input class="input" id="f-name" required maxlength="30" />
+        </div>
+        <div class="form-row">
+          <label for="f-tag">태그</label>
+          <input class="input" id="f-tag" required maxlength="10" placeholder="KR1" />
+        </div>
+        <div class="form-row">
+          <label for="f-tier">티어</label>
+          <select class="select" id="f-tier"></select>
+        </div>
+        <div class="form-row">
+          <label for="f-div">디비전</label>
+          <select class="select" id="f-div">
+            <option value="4">IV</option><option value="3">III</option>
+            <option value="2">II</option><option value="1">I</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="f-main">주 포지션</label>
+          <select class="select" id="f-main"></select>
+        </div>
+        <div class="form-row">
+          <label for="f-sub">부 포지션</label>
+          <select class="select" id="f-sub"><option value="">없음</option></select>
+        </div>
+      </div>
+      <div class="form-row" id="active-row" hidden>
+        <label class="check"><input type="checkbox" id="f-active" /> 활성 상태 (팀 구성 대상)</label>
+      </div>
+      <p class="muted" style="font-size:13px;margin:0 0 12px">예상 점수: <b class="gold" id="f-score">-</b></p>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" data-close-modal="player-modal">취소</button>
+        <button type="submit" class="btn btn-gold" id="f-submit">등록</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/players.js"></script>
+</body>
+</html>

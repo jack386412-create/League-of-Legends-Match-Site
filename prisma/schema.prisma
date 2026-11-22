@@ -1,0 +1,59 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// SQLite: enum 대신 String 사용, 허용 값은 서버(src/constants.js)에서 검증
+// Tier:     IRON BRONZE SILVER GOLD PLATINUM EMERALD DIAMOND MASTER
+// Position: TOP JUNGLE MID ADC SUPPORT
+// Team:     BLUE RED
+// Status:   IN_PROGRESS FINISHED
+
+model Player {
+  id           Int           @id @default(autoincrement())
+  summonerName String
+  tagLine      String // 예: KR1
+  tier         String // Tier 값
+  division     Int           @default(4) // 1~4 (마스터+는 1)
+  mainPosition String // Position 값
+  subPosition  String?
+  scrimScore   Int           @default(0) // 내전 보정 점수
+  isActive     Boolean       @default(true)
+  createdAt    DateTime      @default(now())
+  matches      MatchPlayer[]
+
+  @@unique([summonerName, tagLine])
+}
+
+model Match {
+  id         Int           @id @default(autoincrement())
+  playedAt   DateTime      @default(now())
+  status     String        @default("IN_PROGRESS")
+  winnerTeam String? // BLUE | RED
+  memo       String?
+  players    MatchPlayer[]
+
+  @@index([playedAt])
+}
+
+model MatchPlayer {
+  id         Int     @id @default(autoincrement())
+  match      Match   @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  matchId    Int
+  player     Player  @relation(fields: [playerId], references: [id])
+  playerId   Int
+  team       String // BLUE | RED
+  position   String // Position 값
+  champion   String?
+  kills      Int?
+  deaths     Int?
+  assists    Int?
+  scoreDelta Int     @default(0) // 이 경기로 바뀐 점수 (취소 시 롤백용)
+
+  @@unique([matchId, playerId])
+  @@index([playerId])
+}

@@ -1,0 +1,32 @@
+{
+  "name": "lol-scrim",
+  "version": "1.0.0",
+  "description": "리그 오브 레전드 내전 참가자 관리 · 팀 밸런싱 · 전적 기록 웹 서비스",
+  "main": "src/server.js",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "start:prod": "prisma migrate deploy && node src/server.js",
+    "postinstall": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
+    "db:seed": "node prisma/seed.js",
+    "db:studio": "prisma studio"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@prisma/client": "~6.19.3",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "prisma": "~6.19.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

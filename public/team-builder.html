@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>롤 내전 · 팀 구성</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header id="site-header"></header>
+
+  <main class="container">
+    <div class="page-head">
+      <div>
+        <h1 class="page-title">팀 구성</h1>
+        <p class="page-sub">참가자 10명을 고르면 점수 차이가 가장 적은 조합으로 팀을 나눕니다.</p>
+      </div>
+    </div>
+
+    <div id="need-login" class="notice" hidden>
+      팀 구성은 관리자만 할 수 있습니다. <a href="admin.html?next=team-builder.html">관리자 로그인 →</a>
+    </div>
+
+    <div class="builder" id="builder" hidden>
+      <!-- 참가자 선택 (F-05) -->
+      <section class="card">
+        <div class="card-title">참가자 선택 <button class="btn btn-sm btn-ghost" id="btn-clear">전체 해제</button></div>
+        <div class="toolbar" style="margin-bottom:10px">
+          <input class="input" id="pick-search" type="search" placeholder="이름 검색" />
+        </div>
+        <div class="pick-list" id="pick-list"></div>
+        <div class="pick-footer">
+          <div><span class="pick-counter" id="pick-count">0</span><span class="muted"> / 10명</span></div>
+          <button class="btn btn-gold btn-lg" id="btn-build" disabled>팀 생성</button>
+        </div>
+      </section>
+
+      <!-- 결과 (F-06 ~ F-10) -->
+      <section class="card">
+        <div class="card-title">팀 구성 결과</div>
+        <div id="result">
+          <div class="empty"><div class="big">⚔</div>왼쪽에서 참가자 10명을 선택하고 <b>팀 생성</b>을 누르세요.</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/teamBuilder.js"></script>
+</body>
+</html>
